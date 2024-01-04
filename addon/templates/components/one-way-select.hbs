@@ -10,23 +10,11 @@
     <optgroup label={{optionGroup.groupName}}>
       {{#each optionGroup.options as |option index|}}
         {{#if hasBlock}}
-          {{#one-way-select/option
-              selected=selectedValue
-              option=option
-              optionValuePath=computedOptionValuePath
-              optionTargetPath=optionTargetPath}}
+          <OneWaySelect::Option @selected={{selectedValue}} @option={{option}} @optionValuePath={{computedOptionValuePath}} @optionTargetPath={{optionTargetPath}}>
                 {{yield option index groupIndex}}
-          {{/one-way-select/option}}
+          </OneWaySelect::Option>
         {{else}}
-          {{one-way-select/option
-              selected=selectedValue
-              option=option
-              index=index
-              groupIndex=groupIndex
-              optionComponent=optionComponent
-              optionValuePath=computedOptionValuePath
-              optionTargetPath=optionTargetPath
-              optionLabelPath=optionLabelPath}}
+          <OneWaySelect::Option @selected={{selectedValue}} @option={{option}} @index={{index}} @groupIndex={{groupIndex}} @optionComponent={{optionComponent}} @optionValuePath={{computedOptionValuePath}} @optionTargetPath={{optionTargetPath}} @optionLabelPath={{optionLabelPath}} />
         {{/if}}
       {{/each}}
     </optgroup>
@@ -34,22 +22,11 @@
 {{else}}
   {{#each _options as |option index|}}
     {{#if hasBlock}}
-      {{#one-way-select/option
-          selected=selectedValue
-          option=option
-          optionValuePath=computedOptionValuePath
-          optionTargetPath=optionTargetPath}}
+      <OneWaySelect::Option @selected={{selectedValue}} @option={{option}} @optionValuePath={{computedOptionValuePath}} @optionTargetPath={{optionTargetPath}}>
             {{yield option index}}
-      {{/one-way-select/option}}
+      </OneWaySelect::Option>
     {{else}}
-      {{one-way-select/option
-          selected=selectedValue
-          option=option
-          index=index
-          optionComponent=optionComponent
-          optionValuePath=computedOptionValuePath
-          optionTargetPath=optionTargetPath
-          optionLabelPath=optionLabelPath}}
+      <OneWaySelect::Option @selected={{selectedValue}} @option={{option}} @index={{index}} @optionComponent={{optionComponent}} @optionValuePath={{computedOptionValuePath}} @optionTargetPath={{optionTargetPath}} @optionLabelPath={{optionLabelPath}} />
     {{/if}}
   {{/each}}
 {{/if}}

@@ -1,6 +1,5 @@
-import Ember from 'ember';
-
-const { Mixin, set } = Ember;
+import Mixin from '@ember/object/mixin';
+import { set } from '@ember/object';
 
 export default Mixin.create({
   NON_ATTRIBUTE_BOUND_PROPS: ['class', 'classNames'],

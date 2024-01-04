@@ -8,50 +8,27 @@
   {{numberCurrentValue}}
 </div>
 
-{{one-way-input
-  id="one-way-text"
-  value=textCurrentValue
-  update=(action (mut textCurrentValue))
-}}
+<OneWayInput @id="one-way-text" @value={{textCurrentValue}} @update={{action (mut textCurrentValue)}} />
 
 <div id="committed">
   {{committed}}
 </div>
 
-{{one-way-input
-  id="one-way-text-keyevents"
-  value=textCurrentValue
-  update=(action (mut textCurrentValue))
-  onenter=(action "commit")
-  onescape=(action "commit")
-}}
+<OneWayInput @id="one-way-text-keyevents" @value={{textCurrentValue}} @update={{action (mut textCurrentValue)}} @onenter={{action "commit"}} @onescape={{action "commit"}} />
 
 <div id="checkbox-current-value">
   {{checkboxCurrentValue}}
 </div>
 
-{{one-way-checkbox
-  id="one-way-checkbox"
-  checked=checkboxCurrentValue
-  update=(action (mut checkboxCurrentValue))
-}}
+<OneWayCheckbox @id="one-way-checkbox" @checked={{checkboxCurrentValue}} @update={{action (mut checkboxCurrentValue)}} />
 
-{{one-way-input
-  id="one-way-number"
-  type="number"
-  value=numberCurrentValue
-  update=(action (mut numberCurrentValue))
-}}
+<OneWayInput @id="one-way-number" @type="number" @value={{numberCurrentValue}} @update={{action (mut numberCurrentValue)}} />
 
 
 <div id="masked">
   {{masked}}
 </div>
 
-{{one-way-input
-  id="one-way-masked-input"
-  value=masked
-  update=(action "maskedUpdate")
-}}
+<OneWayInput @id="one-way-masked-input" @value={{masked}} @update={{action "maskedUpdate"}} />
 
 {{outlet}}

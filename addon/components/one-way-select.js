@@ -1,22 +1,13 @@
-import Ember from 'ember';
+import Component from '@ember/component';
+import { or, not, empty, alias } from '@ember/object/computed';
+import { isArray, A as emberArray } from '@ember/array';
+import { isPresent, isNone } from '@ember/utils';
+import EmberObject, { set, get, computed } from '@ember/object';
+import { w } from '@ember/string';
 import layout from '../templates/components/one-way-select';
 import DynamicAttributeBindings from '../-private/dynamic-attribute-bindings';
 
 import { invokeAction } from 'ember-invoke-action';
-
-const {
-  A: emberArray,
-  Component,
-  computed,
-  computed: { alias, empty, not, or },
-  Object: EmberObject,
-  get,
-  isArray,
-  isNone,
-  isPresent,
-  set,
-  String: { w }
-} = Ember;
 
 const OneWaySelectComponent = Component.extend(DynamicAttributeBindings, {
   layout,
@@ -43,14 +34,14 @@ const OneWaySelectComponent = Component.extend(DynamicAttributeBindings, {
   didReceiveAttrs() {
     this._super(...arguments);
 
-    let value = get(this, 'paramValue');
+    let value = this.paramValue;
     if (value === undefined) {
-      value = get(this, 'value');
+      value = this.value;
     }
 
     set(this, 'selectedValue', value);
 
-    let options = get(this, 'options');
+    let options = this.options;
     if (typeof options === 'string') {
       options = w(options);
     }
@@ -71,8 +62,8 @@ const OneWaySelectComponent = Component.extend(DynamicAttributeBindings, {
   computedOptionValuePath: or('optionValuePath', 'optionTargetPath'),
 
   optionGroups: computed('_options.[]', function() {
-    let groupLabelPath = get(this, 'groupLabelPath');
-    let options = get(this, '_options');
+    let groupLabelPath = this.groupLabelPath;
+    let options = this._options;
     let groups = emberArray();
 
     if (!groupLabelPath) {
@@ -106,7 +97,7 @@ const OneWaySelectComponent = Component.extend(DynamicAttributeBindings, {
   change() {
     let value;
 
-    if (get(this, 'multiple') === true) {
+    if (this.multiple === true) {
       value = this._selectedMultiple();
     } else {
       value = this._selectedSingle();
@@ -136,10 +127,10 @@ const OneWaySelectComponent = Component.extend(DynamicAttributeBindings, {
   },
 
   _findOption(value) {
-    let options = get(this, '_options');
-    let optionValuePath = get(this, 'computedOptionValuePath');
-    let optionTargetPath = get(this, 'optionTargetPath');
-    let optionsArePreGrouped = get(this, 'optionsArePreGrouped');
+    let options = this._options;
+    let optionValuePath = this.computedOptionValuePath;
+    let optionTargetPath = this.optionTargetPath;
+    let optionsArePreGrouped = this.optionsArePreGrouped;
 
     let findOption = (item) => {
       if (optionValuePath) {

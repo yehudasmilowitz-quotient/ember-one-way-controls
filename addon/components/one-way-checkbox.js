@@ -1,12 +1,7 @@
-import Ember from 'ember';
+import Component from '@ember/component';
+import { set, get } from '@ember/object';
 import { invokeAction } from 'ember-invoke-action';
 import DynamicAttributeBindings from '../-private/dynamic-attribute-bindings';
-
-const {
-  Component,
-  get,
-  set
-} = Ember;
 
 const OneWayCheckboxComponent = Component.extend(DynamicAttributeBindings, {
   tagName: 'input',
@@ -28,9 +23,9 @@ const OneWayCheckboxComponent = Component.extend(DynamicAttributeBindings, {
   didReceiveAttrs() {
     this._super(...arguments);
 
-    let value = get(this, 'paramChecked');
+    let value = this.paramChecked;
     if (value === undefined) {
-      value = get(this, 'checked');
+      value = this.checked;
     }
 
     set(this, 'isChecked', value);

@@ -1,15 +1,10 @@
-import Ember from 'ember';
+import Component from '@ember/component';
+import { assert } from '@ember/debug';
+import { get, computed } from '@ember/object';
+import { isNone } from '@ember/utils';
 import { invokeAction } from 'ember-invoke-action';
 import DynamicAttributeBindings from '../-private/dynamic-attribute-bindings';
-
-const {
-  Component,
-  assert,
-  computed,
-  get,
-  isNone,
-  run: { schedule }
-} = Ember;
+import { schedule } from '@ember/runloop';
 
 const FORBIDDEN_TYPES = ['checkbox', 'radio'];
 
@@ -42,7 +37,7 @@ const OneWayInputComponent = Component.extend(DynamicAttributeBindings, {
   },
 
   _processNewValue(value) {
-    if (get(this, '_value') !== value) {
+    if (this._value !== value) {
       invokeAction(this, 'update', value);
     }
 
@@ -54,7 +49,7 @@ const OneWayInputComponent = Component.extend(DynamicAttributeBindings, {
       return;
     }
 
-    let actualValue = get(this, '_value');
+    let actualValue = this._value;
     let renderedValue = this.readDOMAttr('value');
 
     if (!isNone(actualValue) && !isNone(renderedValue) && actualValue.toString() !== renderedValue.toString()) {
@@ -101,9 +96,9 @@ const OneWayInputComponent = Component.extend(DynamicAttributeBindings, {
 
   _value: computed('positionalParamValue', 'value', {
     get() {
-      let value = get(this, 'positionalParamValue');
+      let value = this.positionalParamValue;
       if (value === undefined) {
-        value = get(this, 'value');
+        value = this.value;
       }
 
       return value;

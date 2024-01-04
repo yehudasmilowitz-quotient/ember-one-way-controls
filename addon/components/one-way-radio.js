@@ -1,13 +1,7 @@
-import Ember from 'ember';
+import Component from '@ember/component';
+import { set, get, computed } from '@ember/object';
 import { invokeAction } from 'ember-invoke-action';
 import DynamicAttributeBindings from '../-private/dynamic-attribute-bindings';
-
-const {
-  Component,
-  computed,
-  get,
-  set
-} = Ember;
 
 const OneWayRadioComponent = Component.extend(DynamicAttributeBindings, {
   tagName: 'input',
@@ -26,19 +20,19 @@ const OneWayRadioComponent = Component.extend(DynamicAttributeBindings, {
   ],
 
   checked: computed('_value', 'option', function() {
-    return get(this, '_value') === get(this, 'option');
+    return this._value === this.option;
   }),
 
   click() {
-    invokeAction(this, 'update', get(this, 'option'));
+    invokeAction(this, 'update', this.option);
   },
 
   didReceiveAttrs() {
     this._super(...arguments);
 
-    let value = get(this, 'paramValue');
+    let value = this.paramValue;
     if (value === undefined) {
-      value = get(this, 'value');
+      value = this.value;
     }
 
     set(this, '_value', value);
