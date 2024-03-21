@@ -4,7 +4,7 @@ import { isArray, A as emberArray } from '@ember/array';
 import { isPresent, isNone } from '@ember/utils';
 import EmberObject, { set, get, computed } from '@ember/object';
 import { w } from '@ember/string';
-import layout from '../templates/components/one-way-select.hbs';
+import layout from '../templates/components/one-way-select';
 import DynamicAttributeBindings from '../-private/dynamic-attribute-bindings';
 
 import { invokeAction } from 'ember-invoke-action';
