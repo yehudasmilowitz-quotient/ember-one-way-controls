@@ -22,7 +22,6 @@
   },
   "dependencies": {
     "ember-cli-babel": "^8.2.0",
-    "ember-cli-htmlbars": "^6.2.0",
     "ember-invoke-action": "github:rsingh-quotient/ember-invoke-action",
     "ember-runtime-enumerable-includes-polyfill": "^2.1.0"
   },
@@ -30,7 +29,6 @@
     "ember-cli": "^5.5.0",
     "ember-cli-dependency-checker": "^3.3.2",
     "ember-cli-eslint": "3.1.0",
-    "ember-cli-htmlbars-inline-precompile": "^0.4.3",
     "ember-cli-inject-live-reload": "^2.1.0",
     "ember-cli-qunit": "^4.0.1",
     "ember-cli-release": "^1.0.0-beta.2",
@@ -46,7 +44,11 @@
     "ember-resolver": "^11.0.1",
     "ember-source": "~5.5.0",
     "eslint-plugin-ember-suave": "^2.0.1",
-    "loader.js": "^4.7.0"
+    "handlebars": "^4.7.8",
+    "handlebars-loader": "^1.7.3",
+    "loader.js": "^4.7.0",
+    "webpack": "^5.91.0",
+    "webpack-cli": "^5.1.4"
   },
   "engines": {
     "node": ">= 4"
